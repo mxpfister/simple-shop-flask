@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+    <title>Checkout</title>
+</head>
+<body>
+<div class="container">
+    <h1>Checkout</h1>
+    <h2>{{session['firstname']}}´s cart total: {{cart_total}}€</h2>
+    <a>{{error}}</a>
+    <form method="post" action="/successfulCheckout"> <!-- method fhlt -->
+
+        <h3>Delivery address</h3>
+        <label for="firstname">First name:</label>
+        <input class="form-control" name="firstname" id="firstname" placeholder="{{session['firstname']}}"
+               required="required" minlength="3">
+
+        <label for="lastname">Last name:</label>
+        <input class="form-control" name="lastname" id="lastname" placeholder="{{session['lastname']}}"
+               required="required"
+               minlength="3">
+
+        <label for="street">Street:</label>
+        <input class="form-control" name="street" id="street" placeholder="street" required="required">
+
+        <label for="housenumber">Housenumber:</label>
+        <input class="form-control" type="number" min="1" name="housenumber" id="housenumber" placeholder="housenumber"
+               required="required">
+
+        <label for="zipcode">ZIP code:</label> <!-- 'size' wurde leider nicht unterstützt-->
+        <input type="number" class="form-control" name="zipcode" id="zipcode" placeholder="zip code" required="required"
+               min="10000" max="99999">
+
+        <label for="city">City:</label>
+        <input class="form-control" name="city" id="city" placeholder="city">
+
+        <h3>Credit Card Details</h3>
+        <label for="creditcard_name">Name of card owner:</label>
+        <input class="form-control" name="creditcard_name" id="creditcard_name"
+               placeholder="{{session['firstname']}} {{session['lastname']}}" required="required" minlength="7">
+
+        <label for="cc_number">Credit Card number:</label> <!-- 'size' wurde leider nicht unterstützt-->
+        <input type="number" class="form-control" name="cc_number" id="cc_number" placeholder="0000 0000 0000 0000"
+               required="required" min="1000000000000000" max="9999999999999999">
+
+        <label for="cvv">CVV:</label> <!-- 'size' wurde leider nicht unterstützt-->
+        <input type="number" class="form-control" name="cvv" id="cvv" placeholder="000" required="required" min="100"
+               max="999">
+
+        <label for="exp_month">Expiry month:</label>
+        <input type="number" class="form-control" name="exp_month" id="exp_month" placeholder="month"
+               required="required"
+               min="1" max="12">
+
+        <label for="exp_year">Expiry year:</label>
+        <input type="number" class="form-control" name="exp_year" id="exp_year" placeholder="year" required="required"
+               min="2021">
+
+        <button class="btn btn-primary" type="submit">PAY ME</button>
+    </form>
+    <form action="/login_homepage">
+        <input type="submit" value="Homepage"/>
+    </form>
+</div>
+</body>
+</html>

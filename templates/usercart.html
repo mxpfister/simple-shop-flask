@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+    <title>Cart</title>
+</head>
+<body>
+<div class="container">
+    <h1>Cart of: {{session['username']}} ({{session['firstname']}} {{session['lastname']}})</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Category</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price (excl. tax)</th>
+            <th scope="col">Price (incl. Tax)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in user_cart %}
+        <tr>
+            <td scope="row">{{product.ID}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price_excl_tax}} €</td>
+            <td>{{product.price_incl_tax}} €</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <form action="/checkout">
+        <input type="submit" value="Pay your cart"/>
+    </form>
+    <form action="/login_homepage">
+        <input type="submit" value="Homepage"/>
+    </form>
+</div>
+</body>
+</html>
